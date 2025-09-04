@@ -4,29 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Online Book Store - Home</title>
+    <title>Catalogue - Online Book Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
         :root {
-            --primary-color: #A0522D; /* Sienna */
-            --secondary-color: #D2B48C; /* Tan */
-            --dark-color: #333;
-            --light-color: #f8f9fa;
-            --bg-gradient-start: #f8f9fa;
-            --bg-gradient-end: #e9ecef;
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --table-header-bg: #34495e;
+            --table-row-hover: #ecf0f1;
+            --bg-gradient-start: #fdfbfb;
+            --bg-gradient-end: #ebedee;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-image: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-            color: var(--dark-color);
+            font-family: 'Merriweather', serif;
+            background-image: linear-gradient(120deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
+            color: var(--primary-color);
             display: flex;
             flex-direction: column;
             padding-top: 56px; /* Adjust for fixed navbar */
-            overflow-x: hidden;
         }
 
         .navbar {
@@ -37,108 +38,96 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
         .navbar:hover {
             background-color: rgba(0, 0, 0, 0.8) !important;
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
 
         .navbar-brand,
         .nav-link {
             transition: color 0.3s ease, transform 0.3s ease;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
         }
 
         .navbar-brand:hover,
         .nav-link:hover {
-            color: var(--secondary-color) !important;
+            color: var(--accent-color) !important;
             transform: scale(1.05);
         }
-
+        
         .container.my-5 {
             flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
+            padding-top: 3rem;
             animation: fadeIn 1.5s ease-in-out;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
+        
+        h2 {
             font-weight: 700;
-            color: var(--primary-color);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: slideInLeft 1s ease-out;
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                transform: translateX(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .lead {
-            font-weight: 500;
-            color: #555;
-            animation: slideInRight 1s ease-out 0.5s forwards;
-            opacity: 0;
-        }
-        
-        @keyframes slideInRight {
-            from {
-                transform: translateX(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .img-fluid {
-            border-radius: 50%;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-            animation: scaleIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem !important;
+            animation: scaleIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         @keyframes scaleIn {
-            from {
-                transform: scale(0.7);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
-        .img-fluid:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        .table {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: slideUp 1.2s ease-in-out;
         }
 
-        /* Particles background */
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .table thead {
+            background-color: var(--table-header-bg);
+            color: #fff;
+            position: sticky;
+            top: 0;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            padding: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .table tbody tr {
+            background-color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: var(--table-row-hover);
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .table-dark th {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .fw-bold {
+            font-weight: 700 !important;
+            background-color: #f8f9fa;
+        }
+
+        /* Particles animation for background */
         .particles-js-canvas-el {
             position: fixed;
             top: 0;
@@ -151,30 +140,73 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">BookStore 📚</a>
+            <a class="navbar-brand" href="index.html">BookStore 📖</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="register.html">Registration</a></li>
-                    <li class="nav-item"><a class="nav-link" href="catalogue.html">Catalogue</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="catalogue.html">Catalogue</a></li>
                     <li class="nav-item"><a class="nav-link" href="result.html">Result Analysis</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="container text-center my-5">
-        <h1>Welcome to Online Book Store</h1>
-        <img src="book.jpg" class="img-fluid my-3 mx-auto d-block" alt="Bookstore Logo" style="max-width:200px;">
-        <p class="lead">Explore books from various categories</p>
+    <section class="container my-5">
+        <h2 class="mb-3 text-center">Book Catalogue</h2>
+        <table class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Book Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Java</td>
+                    <td>$50</td>
+                    <td>1</td>
+                    <td>$50</td>
+                </tr>
+                <tr>
+                    <td>C++</td>
+                    <td>$60</td>
+                    <td>1</td>
+                    <td>$60</td>
+                </tr>
+                <tr>
+                    <td>Python</td>
+                    <td>$70</td>
+                    <td>1</td>
+                    <td>$70</td>
+                </tr>
+                <tr>
+                    <td>Pega</td>
+                    <td>$100</td>
+                    <td>1</td>
+                    <td>$100</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>$80</td>
+                    <td>1</td>
+                    <td>$80</td>
+                </tr>
+                <tr class="fw-bold">
+                    <td colspan="3">Total</td>
+                    <td>$360</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
     <div id="particles-js"></div>
@@ -185,14 +217,14 @@
         particlesJS('particles-js', {
             "particles": {
                 "number": {
-                    "value": 80,
+                    "value": 60,
                     "density": {
                         "enable": true,
                         "value_area": 800
                     }
                 },
                 "color": {
-                    "value": "#D2B48C"
+                    "value": "#2c3e50"
                 },
                 "shape": {
                     "type": "circle",
@@ -215,7 +247,7 @@
                     }
                 },
                 "size": {
-                    "value": 5,
+                    "value": 4,
                     "random": true,
                     "anim": {
                         "enable": false,
@@ -227,13 +259,13 @@
                 "line_linked": {
                     "enable": true,
                     "distance": 150,
-                    "color": "#D2B48C",
+                    "color": "#34495e",
                     "opacity": 0.4,
                     "width": 1
                 },
                 "move": {
                     "enable": true,
-                    "speed": 6,
+                    "speed": 3,
                     "direction": "none",
                     "random": false,
                     "straight": false,

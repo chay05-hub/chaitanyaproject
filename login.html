@@ -4,45 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Online Book Store - Home</title>
+    <title>Login - Online Book Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
         :root {
-            --primary-color: #A0522D; /* Sienna */
-            --secondary-color: #D2B48C; /* Tan */
+            --primary-color: #5D54A4;
+            --secondary-color: #6A679E;
             --dark-color: #333;
-            --light-color: #f8f9fa;
-            --bg-gradient-start: #f8f9fa;
-            --bg-gradient-end: #e9ecef;
+            --light-color: #fff;
+            --background-color: #F7F7FF;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-image: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: var(--dark-color);
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding-top: 56px; /* Adjust for fixed navbar */
-            overflow-x: hidden;
+            min-height: 100vh;
+            margin: 0;
         }
 
         .navbar {
             background-color: rgba(0, 0, 0, 0.7) !important;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
         .navbar:hover {
             background-color: rgba(0, 0, 0, 0.8) !important;
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
 
         .navbar-brand,
@@ -52,95 +45,96 @@
 
         .navbar-brand:hover,
         .nav-link:hover {
-            color: var(--secondary-color) !important;
+            color: var(--light-color) !important;
             transform: scale(1.05);
         }
 
         .container.my-5 {
             flex-grow: 1;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 2rem;
-            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .login-form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            width: 100%;
+            max-width: 500px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeIn 1s forwards cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
             to {
-                opacity: 1;
                 transform: translateY(0);
+                opacity: 1;
             }
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
+        h2 {
             color: var(--primary-color);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: slideInLeft 1s ease-out;
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                transform: translateX(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
-        .lead {
-            font-weight: 500;
-            color: #555;
-            animation: slideInRight 1s ease-out 0.5s forwards;
-            opacity: 0;
-        }
-        
-        @keyframes slideInRight {
-            from {
-                transform: translateX(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        .form-control {
+            border-radius: 25px;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
         }
 
-        .img-fluid {
-            border-radius: 50%;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-            animation: scaleIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(93, 84, 164, 0.25);
         }
 
-        @keyframes scaleIn {
-            from {
-                transform: scale(0.7);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+        .form-label {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-left: 20px;
         }
 
-        .img-fluid:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        .btn-primary,
+        .btn-secondary {
+            border-radius: 25px;
+            padding: 10px 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
 
-        /* Particles background */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+            transform: translateY(-2px);
+        }
+
+        /* Particles animation for background */
         .particles-js-canvas-el {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -151,30 +145,43 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">BookStore 📚</a>
+            <a class="navbar-brand" href="index.html">BookStore 📖</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="register.html">Registration</a></li>
                     <li class="nav-item"><a class="nav-link" href="catalogue.html">Catalogue</a></li>
                     <li class="nav-item"><a class="nav-link" href="result.html">Result Analysis</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="container text-center my-5">
-        <h1>Welcome to Online Book Store</h1>
-        <img src="book.jpg" class="img-fluid my-3 mx-auto d-block" alt="Bookstore Logo" style="max-width:200px;">
-        <p class="lead">Explore books from various categories</p>
+    <section class="container my-5">
+        <div class="login-form-container">
+            <h2 class="mb-4 text-center">Login to Your Account</h2>
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Login ID</label>
+                    <input type="text" class="form-control" placeholder="Enter your Login ID" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter your password" required>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button type="submit" class="btn btn-primary me-md-2">Login</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+        </div>
     </section>
 
     <div id="particles-js"></div>
@@ -192,7 +199,7 @@
                     }
                 },
                 "color": {
-                    "value": "#D2B48C"
+                    "value": "#6A679E"
                 },
                 "shape": {
                     "type": "circle",
@@ -227,7 +234,7 @@
                 "line_linked": {
                     "enable": true,
                     "distance": 150,
-                    "color": "#D2B48C",
+                    "color": "#6A679E",
                     "opacity": 0.4,
                     "width": 1
                 },
